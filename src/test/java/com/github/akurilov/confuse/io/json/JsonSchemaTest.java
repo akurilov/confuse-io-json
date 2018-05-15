@@ -5,20 +5,21 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import com.github.akurilov.confuse.Config;
 import com.github.akurilov.confuse.SchemaProvider;
 import com.github.akurilov.confuse.exceptions.InvalidValueTypeException;
 import com.github.akurilov.confuse.impl.BasicConfig;
+
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 public class JsonSchemaTest {
 
@@ -39,7 +40,7 @@ public class JsonSchemaTest {
 	@Test
 	public final void testResolvedSchemaContent()
 	throws Exception {
-		final Map<String, Object> schema = SchemaProvider.resolve(
+		final Map<String, Object> schema = SchemaProvider.resolveAndReduce(
 			"test", getClass().getClassLoader()
 		);
 		assertNotNull(schema);
@@ -56,7 +57,7 @@ public class JsonSchemaTest {
 	@Test
 	public final void testResolvedSchemaConfigMatches()
 	throws Exception {
-		final Map<String, Object> schema = SchemaProvider.resolve(
+		final Map<String, Object> schema = SchemaProvider.resolveAndReduce(
 			"test", getClass().getClassLoader()
 		);
 		try(
@@ -70,7 +71,7 @@ public class JsonSchemaTest {
 	@Test
 	public final void testResolvedSchemaConfigMismatch()
 	throws Exception {
-		final Map<String, Object> schema = SchemaProvider.resolve(
+		final Map<String, Object> schema = SchemaProvider.resolveAndReduce(
 			"test", getClass().getClassLoader()
 		);
 		final Config config = new BasicConfig("-", schema);
