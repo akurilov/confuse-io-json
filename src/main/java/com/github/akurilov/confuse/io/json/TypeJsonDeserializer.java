@@ -21,7 +21,7 @@ extends StdDeserializer<T> {
 		try {
 			return (T) Class.forName(typeName);
 		} catch(final ClassNotFoundException e) {
-			return (T) PrimitiveTypeNames.MAP.get(typeName);
+			return (T) TypeNames.MAP.get(typeName);
 		}
 	}
 }
