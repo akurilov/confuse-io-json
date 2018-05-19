@@ -16,12 +16,31 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class JsonSchemaTest {
+public class JsonSchemaTest
+extends JsonSchemaProviderBase {
+
+	@Override
+	protected InputStream schemaInputStream()
+	throws IOException {
+		final URL res = getClass().getResource("/test-schema.json");
+		if(res == null) {
+			throw new FileNotFoundException("resources://test-schema.json");
+		}
+		return res.openStream();
+	}
+
+	@Override
+	public String id() {
+		return "test";
+	}
 
 	private static ObjectMapper objectMapper(final Map<String, Object> schema)
 	throws NoSuchMethodException {
