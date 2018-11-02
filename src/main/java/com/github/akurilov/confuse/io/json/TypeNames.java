@@ -10,12 +10,12 @@ public interface TypeNames {
 		put("any", Object.class);
 		put("boolean", boolean.class);
 		put("byte", byte.class);
-		put("int16", short.class);
+		put("short", short.class);
 		put("char", char.class);
-		put("int32", int.class);
-		put("int64", long.class);
-		put("float32", float.class);
-		put("float64", double.class);
+		put("int", int.class);
+		put("long", long.class);
+		put("float", float.class);
+		put("double", double.class);
 		put("void", void.class);
 		put("string", String.class);
 		put("list", List.class);
