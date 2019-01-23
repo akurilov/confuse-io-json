@@ -11,7 +11,7 @@ allprojects {
 	apply plugin: "maven"
 	apply plugin: "signing"
 	group = "com.github.akurilov"
-	version = "1.0.3"
+	version = "1.1.0"
 }
 
 ext {
@@ -25,22 +25,22 @@ repositories {
 dependencies {
 
 	compile(
-		"com.github.akurilov:confuse:[1.1.0,)",
-		"com.fasterxml.jackson.core:jackson-core:2.9.5",
-		"com.fasterxml.jackson.core:jackson-databind:2.9.5",
+		"com.github.akurilov:confuse:1.2.0",
+		"com.fasterxml.jackson.core:jackson-core:2.9.6",
+		"com.fasterxml.jackson.core:jackson-databind:2.9.6",
 	)
 
 	testCompile("junit:junit:4.12")
 }
 
 compileJava {
-	sourceCompatibility = JavaVersion.VERSION_1_8
-	targetCompatibility = JavaVersion.VERSION_1_8
+	sourceCompatibility = JavaVersion.VERSION_11
+	targetCompatibility = JavaVersion.VERSION_11
 }
 
 compileTestJava {
-	sourceCompatibility = JavaVersion.VERSION_1_8
-	targetCompatibility = JavaVersion.VERSION_1_8
+	sourceCompatibility = JavaVersion.VERSION_11
+	targetCompatibility = JavaVersion.VERSION_11
 }
 
 jar {
