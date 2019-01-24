@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface TypeNames {
 
-	Map<String, Class> MAP = new HashMap<String, Class>() {{
+	Map<String, Class> MAP = new HashMap<>() {{
 		put("any", Object.class);
 		put("boolean", boolean.class);
 		put("byte", byte.class);

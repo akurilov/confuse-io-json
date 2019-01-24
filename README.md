@@ -6,5 +6,5 @@ Configuration serialization/deserialization using Jackson library
 ## Gradle
 
 ```groovy
-compile group: 'com.github.akurilov', name: 'confuse-io-json', version: '1.0.3'
+compile group: 'com.github.akurilov', name: 'confuse-io-json', version: '1.1.0'
 ```

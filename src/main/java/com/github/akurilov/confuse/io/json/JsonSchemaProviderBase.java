@@ -3,9 +3,9 @@ package com.github.akurilov.confuse.io.json;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import com.github.akurilov.confuse.SchemaProvider;
 
 import java.io.IOException;
@@ -18,17 +18,16 @@ implements SchemaProvider {
 	@Override
 	public Map<String, Object> schema()
 	throws IOException  {
-		final Module module = new SimpleModule()
+		final var module = new SimpleModule()
 			.addDeserializer(String.class, new TypeJsonDeserializer(String.class));
-		final ObjectMapper m = new ObjectMapper()
+		final var m = new ObjectMapper()
 			.registerModule(module)
 			.enable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
 			.enable(DeserializationFeature.FAIL_ON_READING_DUP_TREE_KEY)
 			.configure(JsonParser.Feature.ALLOW_COMMENTS, true)
 			.configure(JsonParser.Feature.ALLOW_YAML_COMMENTS, true);
-		final TypeReference<Map<String, Object>>
-			typeRef = new TypeReference<Map<String, Object>>() {};
-		try(final InputStream input = schemaInputStream()) {
+		final var typeRef = new TypeReference<Map<String, Object>>() {};
+		try(final var input = schemaInputStream()) {
 			return m.readValue(input, typeRef);
 		}
 	}

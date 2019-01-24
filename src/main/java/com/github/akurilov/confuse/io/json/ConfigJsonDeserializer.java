@@ -10,7 +10,6 @@ import com.github.akurilov.confuse.Config;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.util.HashMap;
 import java.util.Map;
 
 public final class ConfigJsonDeserializer<C extends Config>
@@ -37,9 +36,7 @@ extends StdDeserializer<C> {
 	@Override
 	public final C deserialize(final JsonParser p, final DeserializationContext ctx)
 	throws IOException, JsonProcessingException {
-		final Map<String, Object> node = p.readValueAs(
-			new TypeReference<HashMap<String, Object>>() {}
-		);
+		final var node = p.readValueAs(new TypeReference<Map<String, Object>>() {});
 		try {
 			return constructor.newInstance(pathSep, schema, node);
 		} catch(final ReflectiveOperationException e) {

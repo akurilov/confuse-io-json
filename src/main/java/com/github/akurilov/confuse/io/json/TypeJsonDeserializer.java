@@ -17,7 +17,7 @@ extends StdDeserializer<T> {
 	@Override @SuppressWarnings("unchecked")
 	public T deserialize(final JsonParser p, final DeserializationContext ctx)
 	throws IOException, JsonProcessingException {
-		final String typeName = p.getValueAsString();
+		final var typeName = p.getValueAsString();
 		try {
 			return (T) Class.forName(typeName);
 		} catch(final ClassNotFoundException e) {

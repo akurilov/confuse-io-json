@@ -10,7 +10,6 @@ import static com.github.akurilov.confuse.Config.ROOT_PATH;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 public final class ConfigJsonSerializer
 extends StdSerializer<Config> {
@@ -24,7 +23,7 @@ extends StdSerializer<Config> {
 		final Config value, final JsonGenerator gen, final SerializerProvider provider
 	) throws IOException {
 		gen.writeStartObject();
-		final Map<String, Object> valueAsMap = value.mapVal(ROOT_PATH);
+		final var valueAsMap = value.mapVal(ROOT_PATH);
 		valueAsMap
 			.forEach(
 				(k, v) -> {

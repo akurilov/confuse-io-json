@@ -26,15 +26,15 @@ implements ConfigProvider {
 		} catch(final NoSuchMethodException e) {
 			throw new AssertionError(e);
 		}
-		final Module module = new SimpleModule()
+		final var module = new SimpleModule()
 			.addDeserializer(BasicConfig.class, deserializer);
-		final ObjectMapper mapper = new ObjectMapper()
+		final var mapper = new ObjectMapper()
 			.registerModule(module)
 			.enable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
 			.enable(DeserializationFeature.FAIL_ON_READING_DUP_TREE_KEY)
 			.configure(JsonParser.Feature.ALLOW_COMMENTS, true)
 			.configure(JsonParser.Feature.ALLOW_YAML_COMMENTS, true);
-		try(final InputStream input = configInputStream()) {
+		try(final var input = configInputStream()) {
 			return mapper.readValue(input, BasicConfig.class);
 		}
 	}
